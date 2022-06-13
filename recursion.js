@@ -4,6 +4,10 @@ function product(nums) {
   //base/degenerate case: product of an empty list is 1 bc reasons
   //our stopping condition to prevent an infinite loop
   if(nums.length === 0) return 1;
+
+  //take the first number of the arr
+  //and multiply it by the outcome of product()
+  //on nums one less element
   return nums[0] * product(nums.slice(1));
 }
 
