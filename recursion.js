@@ -1,7 +1,8 @@
 /** product: calculate the product of an array of numbers. */
 
 function product(nums) {
-  //base/degenerate case: product of an empty list is 1 bc reasons
+  //base/degenerate case: gotta return 1 when the list is empty
+  //if you returned 0 anything you multiplied with it would stay 0
   //our stopping condition to prevent an infinite loop
   if(nums.length === 0) return 1;
 
@@ -23,6 +24,7 @@ function product(nums) {
  * 1 * product([2, 3])                  1 * 6 = 6
  */
 
+
 /** longest: return the length of the longest word in an array of words. */
 
 function longest(words) {
@@ -30,24 +32,24 @@ function longest(words) {
 
   //look at one word's length 
   //"thisLength" is more descriptive than "word"
-  const thisLength = words[0];
-  //and compare to the next, returning the larger--recurse
+  const thisLength = words[0].length;
+  //and compare to the next, returning the larger word length--recurse
   return Math.max(thisLength, longest(words.slice(1)));
-  
 
 }
 
 /** longest(["a", "ab", "abc"])
- *                call stack diagram 
+ *                           call stack diagram 
  * 
- *            1 (base case)           1
- *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *        3 * product([])          3 * 1 = 3
- *      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- *    2 * product([3])                2 * 3 = 6
- *  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- * 1 * product([2, 3])                  1 * 6 = 6
+ *            0 (base case)                             0
+ *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *        Math.max("abc", longest([]))            Math.max(0, 3) = 3
+ *      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *    Math.max(2, longest(["abc"]))                    Math.max(2, 3) = 3
+ *  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ * Math.max(1, longest(["ab", "abc"]))                      Math.max(1, 3) = 3
  */
+
 
 /** everyOther: return a string with every other letter. */
 
