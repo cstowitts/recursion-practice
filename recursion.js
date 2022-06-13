@@ -26,8 +26,28 @@ function product(nums) {
 /** longest: return the length of the longest word in an array of words. */
 
 function longest(words) {
+  if(words.length === 0) return 0;
+
+  //look at one word's length 
+  //"thisLength" is more descriptive than "word"
+  const thisLength = words[0];
+  //and compare to the next, returning the larger--recurse
+  return Math.max(thisLength, longest(words.slice(1)));
+  
 
 }
+
+/** longest(["a", "ab", "abc"])
+ *                call stack diagram 
+ * 
+ *            1 (base case)           1
+ *          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *        3 * product([])          3 * 1 = 3
+ *      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *    2 * product([3])                2 * 3 = 6
+ *  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ * 1 * product([2, 3])                  1 * 6 = 6
+ */
 
 /** everyOther: return a string with every other letter. */
 
