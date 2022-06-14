@@ -184,7 +184,7 @@ function revString(str) {
 }
 
 /** revString("pizza")
- *                call stack diagram 
+ *                      call stack diagram 
  * 
  *                 "" (base case)           ""
  *               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -201,9 +201,39 @@ function revString(str) {
 
 /** findIndex: return the index of val in arr (or -1 if val is not present). */
 
-function findIndex(arr, val) {
+function findIndex(arr, val, idx = 0) {
+  //base case: if we find the val we're looking for, return the idx
+  if(arr[0] === val) return idx;
+  //base case: if we run out of elements to check against, 
+  //the val isn't in the arr--return -1
+  if(arr.length === 0) return -1;
 
+  return findIndex(arr.slice(1), val, idx + 1);
 }
+
+/** findIndex([1, 2, 3], 24)
+ *                       call stack diagram 
+ * 
+ *                    never hits first base case              
+ * 
+ *           findIndex([], 24, 3) base case          -1
+ *         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *        findIndex([3], 24, 2)                        -1
+ *      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *    findIndex([2, 3], 24, 1)                           -1
+ *  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
+ * findIndex([1, 2, 3], 24, 0)                             -1
+ * 
+ * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * 
+ *  findIndex([1, 2, 3], 2)
+ *                       call stack diagram 
+ * 
+ *                    never hits second base case              
+ * 
+ *    findIndex([2, 3], 2, 1) base case                 1
+ *  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  
+ * findIndex([1, 2, 3], 2, 0)                              1
 
 /** gatherStrings: given an object, return an array of all of the string values. */
 
