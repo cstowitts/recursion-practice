@@ -4,7 +4,7 @@ function product(nums) {
   //base/degenerate case: gotta return 1 when the list is empty
   //if you returned 0 anything you multiplied with it would stay 0
   //our stopping condition to prevent an infinite loop
-  if(nums.length === 0) return 1;
+  if (nums.length === 0) return 1;
 
   //take the first number of the arr
   //and multiply it by the outcome of product()
@@ -28,7 +28,7 @@ function product(nums) {
 /** longest: return the length of the longest word in an array of words. */
 
 function longest(words) {
-  if(words.length === 0) return 0;
+  if (words.length === 0) return 0;
 
   //look at one word's length 
   //"thisLength" is more descriptive than "word"
@@ -55,7 +55,7 @@ function longest(words) {
 
 function everyOther(str) {
   //if there are no letters left, return an empty str
-  if(str === "") return "";
+  if (str === "") return "";
 
   //look at the first letter of the str, concat with the 3rd letter 
   //fun fact: slicing an idx of an empty str returns an empty str, not an error
@@ -77,8 +77,8 @@ function everyOther(str) {
 
 function find(arr, val) {
   //base cases are if the arr are empty and if we find the val
-  if(arr.length === 0) return false;
-  if(arr[0] === val) return true;
+  if (arr.length === 0) return false;
+  if (arr[0] === val) return true;
 
   //look at the first val in the arr
   //compare to find(idx1 onwards)
@@ -125,17 +125,17 @@ function find(arr, val) {
 
 function isPalindrome(str) {
   //base case: if there's less than 2 letters left, we got it! return true
-    //ex: "dad" => "a" it's palindrome!
-    //ex: "foof" => "oo" => "" it's a palindrome!
-  if(str.length < 2) return true;
+  //ex: "dad" => "a" it's palindrome!
+  //ex: "foof" => "oo" => "" it's a palindrome!
+  if (str.length < 2) return true;
 
   //check if the 1st letter and last are the same, if not, return false
-  if(str[0] !== str[str.length - 1]) return false;
+  if (str[0] !== str[str.length - 1]) return false;
 
   //if we get down here, that means that the 1st and last letters were the same
   //but we still have additional characters to check, 
   //so we need to cut off the current 1st and last letters and check the rest
-  return isPalindrome(str.slice(1, str.length-1))
+  return isPalindrome(str.slice(1, str.length - 1))
 }
 
 /**
@@ -173,8 +173,31 @@ function isPalindrome(str) {
 /** revString: return a copy of a string, but in reverse. */
 
 function revString(str) {
+  //base case, stop when there aren't any letters to reverse
+  if (str.length === 0) return "";
+
+  //we want to get the last letter of the str
+  //and concat it with the next last letter (gotta recurse)
+  return str[str.length - 1] + revString(str.slice(0, str.length - 1));
+
 
 }
+
+/** revString("pizza")
+ *                call stack diagram 
+ * 
+ *                 "" (base case)           ""
+ *               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *             "p" + reverseStr("")           "p"
+ *            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *           "i" + reverseStr("p")              "ip"
+ *         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *        "z" + reverseStr("pi")                  "zip"
+ *      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *    "z" + reverseStr("piz")                       "zzip"
+ *  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ * "a" + reverseStr("pizz")                            "azzip"
+ */
 
 /** findIndex: return the index of val in arr (or -1 if val is not present). */
 
